@@ -55,7 +55,6 @@ public class AddTransactionServiceImpl implements AddTransactionService {
 
         String key = generateIdempotencyKey(request);
 
-        // 1. Validar primero si ya existe la clave de idempotencia en BD antes de llamar al proveedor
         Optional<TransactionEntity> existing = transactionRepository.findByIdempotencyKey(key);
         if (existing.isPresent()) {
             throw new TransactionException(
@@ -63,10 +62,8 @@ public class AddTransactionServiceImpl implements AddTransactionService {
                     HttpStatus.CONFLICT.value());
         }
 
-        // 2. Si no existe, validar reglas de negocio
         transactionValidators.forEach(validator -> validator.validate(request));
 
-        // 3. Enviar la petición al servicio del proveedor externo
         ProviderExecuteRequest providerRequest = transactionMapper.toProviderRequest(request);
         ProviderExecuteResponse providerResponse;
         try {
@@ -93,7 +90,6 @@ public class AddTransactionServiceImpl implements AddTransactionService {
             );
         }
 
-        // 4. Mapear y registrar en la BD con su clave de idempotencia
         Transaction transaction = transactionMapper.toDomain(request, providerResponse,
                 UUID.randomUUID().toString());
 
@@ -104,7 +100,6 @@ public class AddTransactionServiceImpl implements AddTransactionService {
             TransactionEntity saved = transactionRepository.saveAndFlush(entity);
             return transactionMapper.toResponse(transactionMapper.toDomain(saved));
         } catch (DataIntegrityViolationException e) {
-            // En caso de carrera, la segunda inserción viola la restricción única: reportar conflicto
             throw new TransactionException(
                     messageService.getMessage("transaction.idempotency.conflict"),
                     e,
@@ -113,7 +108,6 @@ public class AddTransactionServiceImpl implements AddTransactionService {
     }
 
     private String generateIdempotencyKey(TransactionRequest request) {
-        // Tiempo de 10 minutos: todas las solicitudes dentro de la misma ventana comparten clave
         long epochMillis = Instant.now().toEpochMilli();
         long intervalPetition = epochMillis / (10L * 60L * 1000L);
 
@@ -131,8 +125,7 @@ public class AddTransactionServiceImpl implements AddTransactionService {
             byte[] digest = md.digest(canonical.getBytes(StandardCharsets.UTF_8));
             return toHex(digest); // 64 chars, cabe en VARCHAR(100)
         } catch (NoSuchAlgorithmException e) {
-            // Fallback improbable: usa UUID si SHA-256 no está disponible
-            return UUID.randomUUID().toString();
+             return UUID.randomUUID().toString();
         }
     }
 

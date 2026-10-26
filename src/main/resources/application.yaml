@@ -1,12 +1,15 @@
 spring:
   application:
     name: challenge
+  messages:
+    basename: messages-eng
+    encoding: UTF-8
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     username: Admin
     password: Admin123
     driver-class-name: org.postgresql.Driver
-    hikari:
+  hikari:
       pool-name: challenge-pool
       maximum-pool-size: 10
       minimum-idle: 2
@@ -20,6 +23,8 @@ spring:
         format_sql: true
         jdbc:
           time_zone: UTC
+  jackson:
+    default-property-inclusion: non_null
 
 provider:
   base-url: http://localhost:8081
@@ -28,5 +33,10 @@ provider:
   read-timeout: 5s
 
 springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
   swagger-ui:
+    enabled: true
     path: /swagger-ui.html
+    disable-swagger-default-url: true

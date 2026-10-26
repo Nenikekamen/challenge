@@ -12,6 +12,7 @@ CREATE TABLE transactions (
     balance_after           NUMERIC(19, 2),
     failure_code            VARCHAR(64),
     failure_message         VARCHAR(500),
+    provider_references     VARCHAR(150),
     created_at              TIMESTAMP WITH TIME ZONE NOT NULL,
     updated_at              TIMESTAMP WITH TIME ZONE NOT NULL
 );
