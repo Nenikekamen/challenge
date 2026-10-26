@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: challenge
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: Admin
+    password: Admin123
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      pool-name: challenge-pool
+      maximum-pool-size: 10
+      minimum-idle: 2
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          time_zone: UTC
+
+provider:
+  base-url: http://localhost:8081
+  execute-path: /provider/v1/execute
+  connect-timeout: 2s
+  read-timeout: 5s
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
