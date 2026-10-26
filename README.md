@@ -22,8 +22,6 @@ API REST desarrollada en Spring Boot para la gestión, procesamiento y consulta 
 
 ## Decisiones de Diseño
 
-### Arquitectura Hexagonal
-
 El proyecto está estructurado desacoplando las reglas de negocio de los detalles de infraestructura:
 
 - Maneja las 3 principales capas de la arquitectura Hexagonal para el manejo y desacoplamiento de cada una de las capas
@@ -51,6 +49,12 @@ El proyecto está estructurado desacoplando las reglas de negocio de los detalle
   aplicacion para esto tambien se requerie tener un balanceador de carga para tener siempre disponible la aplicacion,
   asi como la base de datos con alta dispoibilidad, tambien creo que seria bueno tener una cola de mensajes para la
   comunicacion asincrona.
+  
+## Uso de la IA
+
+Se utilizo Junie que se usa con IntelliJ, para la creación de algunas clases y sobre todo para la parte de agregar test
+unitarios, y tambien cuando salia un error para mejorar los tiempos de desarrollo se uso la IA, sin embargo no se construyo
+la aplicación de una vez, se va construyendo poco a poco y se revisa código y funcionamiento de la aplicación. 
 
 ## Levantar la aplicación
 
