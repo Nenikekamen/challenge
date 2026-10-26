@@ -1,0 +1,409 @@
+{
+  "info": {
+    "name": "Challenge",
+    "description": null,
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Mock",
+      "item": [
+        {
+          "name": "ProviderSuccessCredit",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": "",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8081/provider/v1/execute",
+              "protocol": "http",
+              "host": [
+                "localhost:8081"
+              ],
+              "path": [
+                "provider",
+                "v1",
+                "execute"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountId\": \"acc-1\",\n  \"type\": \"CREDIT\",\n  \"amount\": 100,\n  \"currency\": \"MXN\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "ProviderSuccessDebit",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": "",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8081/provider/v1/execute",
+              "protocol": "http",
+              "host": [
+                "localhost:8081"
+              ],
+              "path": [
+                "provider",
+                "v1",
+                "execute"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountId\": \"acc-2\",\n  \"type\": \"DEBIT\",\n  \"amount\": 100,\n  \"currency\": \"MXN\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Restart",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8081/__admin/mappings/reset",
+              "protocol": "http",
+              "host": [
+                "localhost:8081"
+              ],
+              "path": [
+                "__admin",
+                "mappings",
+                "reset"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "ProviderError",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": "",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8081/provider/v1/execute",
+              "protocol": "http",
+              "host": [
+                "localhost:8081"
+              ],
+              "path": [
+                "provider",
+                "v1",
+                "execute"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountId\": \"acc-error\",\n  \"type\": \"CREDIT\",\n  \"amount\": 100,\n  \"currency\": \"MXN\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "ProviderTimeout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": "",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8081/provider/v1/execute",
+              "protocol": "http",
+              "host": [
+                "localhost:8081"
+              ],
+              "path": [
+                "provider",
+                "v1",
+                "execute"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountId\": \"acc-slow\",\n  \"type\": \"CREDIT\",\n  \"amount\": 100,\n  \"currency\": \"MXN\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "ProviderNotFounds",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": "",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8081/provider/v1/execute",
+              "protocol": "http",
+              "host": [
+                "localhost:8081"
+              ],
+              "path": [
+                "provider",
+                "v1",
+                "execute"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountId\": \"acc-2\",\n  \"type\": \"DEBIT\",\n  \"amount\": 20000,\n  \"currency\": \"MXN\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "ProviderBlocked",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": "",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8081/provider/v1/execute",
+              "protocol": "http",
+              "host": [
+                "localhost:8081"
+              ],
+              "path": [
+                "provider",
+                "v1",
+                "execute"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountId\": \"acc-blocked\",\n  \"type\": \"DEBIT\",\n  \"amount\": 100,\n  \"currency\": \"MXN\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "spin",
+      "item": [
+        {
+          "name": "TransactionDebitSuccess",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8080/v1/transactions",
+              "protocol": "http",
+              "host": [
+                "localhost:8080"
+              ],
+              "path": [
+                "v1",
+                "transactions"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n \"accountId\": \"acc-2\",\n  \"type\": \"DEBIT\",\n  \"amount\": 1000,\n \"currency\": \"MXN\",\n \"description\": \"Transferencia recibida\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "RetrieveTransactions",
+          "request": {
+            "method": "get",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json",
+                "description": "",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8080/v1/transactions?accountId=acc-2&page=0&limit=20",
+              "protocol": "http",
+              "host": [
+                "localhost:8080"
+              ],
+              "path": [
+                "v1",
+                "transactions"
+              ],
+              "query": [
+                {
+                  "key": "accountId",
+                  "value": "acc-2"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
+              ],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "TransactionDebitSuccess copy",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "description": "",
+            "url": {
+              "raw": "http://localhost:8080/v1/transactions",
+              "protocol": "http",
+              "host": [
+                "localhost:8080"
+              ],
+              "path": [
+                "v1",
+                "transactions"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n \"accountId\": \"acc-error\",\n  \"type\": \"CREDIT\",\n  \"amount\": 1000,\n \"currency\": \"MXN\",\n \"description\": \"Transferencia recibida\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "randomValue length=10 type=&apos;ALPHANUMERIC&apos; uppercase=true",
+      "value": "",
+      "type": "default"
+    },
+    {
+      "key": "jsonPath request.body &apos;$.transactionId&apos;",
+      "value": "",
+      "type": "default"
+    },
+    {
+      "key": "now format=&apos;yyyy-MM-dd&apos;T&apos;HH:mm:ss.SSSXXX&apos;",
+      "value": "",
+      "type": "default"
+    },
+    {
+      "key": "now format=\\&quot;yyyy-MM-dd&apos;T&apos;HH:mm:ss.SSSXXX\\&quot;",
+      "value": "",
+      "type": "default"
+    },
+    {
+      "key": "now format=\\&quot;yyyy-MM-dd\\&quot;",
+      "value": "",
+      "type": "default"
+    },
+    {
+      "key": "now format=\\&quot;HH:mm:ss.SSSXXX\\&quot;",
+      "value": "",
+      "type": "default"
+    }
+  ]
+}
